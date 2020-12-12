@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- localStorage 是可以用來記錄使用者瀏覽了什麼 -->
+    <!-- 先把使用者瀏覽的資料用localStorage存，在用後端去串localStorage的資料 -->
+
+
+    <form name="form1" action="" onsubmit="saveDate();return false;">
+
+        姓名 <input type="text" name="name" readonly>
+        <br>
+        <textarea name="content" cols="30" rows="3"></textarea>
+
+
+    </form>
+
+    <script>
+        let data = localStorage.getItem('mydata');
+
+        // 如果沒有值得話（用戶沒填資料），就不進行load
+        if (data) {
+            try {
+                data = JSON.parse(data);
+            } catch (ex) {
+                data = {
+                    name: '',
+                    content: ''
+                }
+            }
+            document.form1.name.value = data.name;
+            document.form1.content.value = data.content;
+        }
+    </script>
+</body>
+
+</html>

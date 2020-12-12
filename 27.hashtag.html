@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 300px;
+            height: 600px;
+            background-color: rgb(36, 84, 138);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- 這邊的連結會對應到下面的id框 -->
+        <!-- #的特性
+        1. 頁面內的連結，不會換頁
+        2. 網址列會顯示按到#標記的哪個，然後可以加到我的最愛，下次打開就會直接釘到#的位置
+         -->
+
+        <a href="#b1">b1</a>
+        <a href="#b2">b2</a>
+        <a href="#b3">b3</a>
+    </div>
+
+
+    <div id="b1" class="box"></div>
+    <div id="b2" class="box" style="background-color: rgb(40, 105, 40);"></div>
+    <div id="b3" class="box" style="background-color: rgb(156, 27, 156);"></div>
+
+    <!-- JS有個功能能知道目前#的狀態 -->
+    <script>
+        // JQ的事件處理器不要用剪頭函式，因為裡面會綁定hash
+
+        // 這邊是設定一開始頁面進來要拿到的預設值
+        const handleHash = () => {
+            // 先假設一個變數b1
+            let a = 'b1';
+            // 如果一開始的location.hash有設定，a就從location.hash.slice(1)
+            if (location.hash) {
+                // slice(1)從一的位置開始拿，沒有第二參數就是全拿
+                a = location.hash.slice(1)
+
+            }
+            console.log(a);
+        }
+
+        window.addEventListener('hashchange', handleHash);
+
+        // 這邊是一進來就先執行一次剛剛設定的handleHash，所以會執行一次變成b1
+        handleHash();
+
+        // 這邊是設定變動hash時，顯示他的變化
+        // window.addEventListener('hashchange', function () {
+        //     // 變動時就顯示一下目前hash的位置，location是內建語法
+        //     console.log(location.hash);
+
+        // });
+    </script>
+</body>
+
+</html>

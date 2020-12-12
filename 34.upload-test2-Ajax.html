@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用Ajax的方式呈現圖片內容</title>
+</head>
+
+<body>
+
+
+    <!-- style="display:none" 是因為我自己想要設定外觀 -->
+    <form name="form1" style="display:none">
+
+        <input type="file" name="avatar" accept="image/*">
+
+    </form>
+
+    <!-- onclick="field.click()"是指點這個按鈕時，模擬點擊上面的input -->
+    <button onclick="field.click()">上傳</button>
+    <img id="myimg" src="" alt="">
+
+
+
+
+    <script>
+        // files方法
+        // document.querySelector('input[name=avatar]').files;
+
+
+        const field = document.querySelector('input[name=avatar]');
+
+        // 一變更我就要做什麼
+        field.addEventListener('change', function () {
+            // 我就要做上傳
+            // FormData()是沒有外觀的表單。在form1立面的內容要塞進一個表單內
+            const fd = new FormData(document.form1);
+
+            // 把上面的表單包以來後，送出去
+            // fetch的這個動作拿到的是一個promise ,p是用來做非同步的處理
+            fetch('upload-single-avatar2.php', {
+                    method: 'POST',
+                    body: fd
+
+                })
+                // r 是response的物件，上面的用
+                // 這邊是處理回來之後的事, r => r.json() 用箭頭函式寫的一個function
+                // 傳統寫法  *r只是一個形式參數，所以下什麼都可以
+                //     .then(function (response) {
+                //         return r.json();
+                //     })
+                .then(r => r.json()) //這個方法給出來的一樣是promise物件，所以還要再接一個.then去把它處理成陣列
+                .then(obj => {
+                    console.log(obj)
+                    document.querySelector('#myimg').src = obj.img;
+                })
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!--  enctype="multipart/form-data" 表單內有任何填寫籃，必選這個 -->
+    <!-- enctype 布設定的話，下面的input會沒有功能 -->
+    <form action="upload-single-avatar.php" method="post" enctype="multipart/form-data">
+
+        <!-- accept代表只能選什麼image/png，＊全選 -->
+        <input type="file" name="avatar" accept="image/*">
+        <br>
+        <input type="submit">
+
+    </form>
+
+
+</body>
+
+</html>

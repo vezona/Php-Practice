@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- localStorage 是可以用來記錄使用者瀏覽了什麼 -->
+    <!-- 先把使用者瀏覽的資料用localStorage存，在用後端去串localStorage的資料 -->
+
+
+    <form name="form1" action="" onsubmit="saveDate();return false;">
+
+        <input type="text" name="name" placeholder="name">
+        <br>
+        <textarea name="content" cols="30" rows="3"></textarea>
+        <input type="submit">
+
+
+    </form>
+
+    <script>
+        function saveDate() {
+            const data = {
+                name: document.form1.name.value,
+                content: document.form1.content.value,
+
+            };
+
+            localStorage.setItem('mydata', JSON.stringify(data));
+            alert(ok);
+
+        }
+    </script>
+</body>
+
+</html>
